@@ -1,0 +1,337 @@
+[
+  {
+    "country": "GB",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/Check"
+  },
+  {
+    "country": "AG",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckArgentina"
+  },
+  {
+    "country": "AU",
+    "fields": [
+      "RegistrationNumber",
+      "State"
+    ],
+    "endpoint": "/CheckAustralia"
+  },
+  {
+    "country": "BE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckBelgium"
+  },
+  {
+    "country": "BO",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckBolivia"
+  },
+  {
+    "country": "BR",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckBrazil"
+  },
+  {
+    "country": "CA",
+    "fields": [
+      "RegistrationNumber",
+      "state"
+    ],
+    "endpoint": "/CheckCanada"
+  },
+  {
+    "country": "CL",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckChile"
+  },
+  {
+    "country": "CO",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckColombia"
+  },
+  {
+    "country": "CR",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckCostaRica"
+  },
+  {
+    "country": "HR",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckCroatia"
+  },
+  {
+    "country": "CY",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckCyprus"
+  },
+  {
+    "country": "CZ",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckCzechRepublic"
+  },
+  {
+    "country": "DK",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckDenmark"
+  },
+  {
+    "country": "EC",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckEcuador"
+  },
+  {
+    "country": "EE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckEstonia"
+  },
+  {
+    "country": "FI",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckFinland"
+  },
+  {
+    "country": "FR",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckFrance"
+  },
+  {
+    "country": "GR",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckGreece"
+  },
+  {
+    "country": "HU",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckHungary"
+  },
+  {
+    "country": "IS",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckIceland"
+  },
+  {
+    "country": "IN",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckIndia"
+  },
+  {
+    "country": "IE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckIreland"
+  },
+  {
+    "country": "IL",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckIsrael"
+  },
+  {
+    "country": "IT",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckItaly"
+  },
+  {
+    "country": "LV",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckLatvia"
+  },
+  {
+    "country": "MY",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckMalaysia"
+  },
+  {
+    "country": "MX",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckMexico"
+  },
+  {
+    "country": "GB",
+    "label": "Motorbike",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckMotorBikeUK"
+  },
+  {
+    "country": "NL",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckNetherlands"
+  },
+  {
+    "country": "NZ",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckNewZealand"
+  },
+  {
+    "country": "NG",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckNigeria"
+  },
+  {
+    "country": "NO",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckNorway"
+  },
+  {
+    "country": "PK",
+    "fields": [
+      "RegistrationNumber",
+      "state",
+      "district"
+    ],
+    "endpoint": "/CheckPakistan"
+  },
+  {
+    "country": "PE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckPeru"
+  },
+  {
+    "country": "PT",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckPortugal"
+  },
+  {
+    "country": "RU",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckRussia"
+  },
+  {
+    "country": "SG",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSingapore"
+  },
+  {
+    "country": "SK",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSlovakia"
+  },
+  {
+    "country": "SI",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSlovenia"
+  },
+  {
+    "country": "ZA",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSouthAfrica"
+  },
+  {
+    "country": "ES",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSpain"
+  },
+  {
+    "country": "LK",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSriLanka"
+  },
+  {
+    "country": "SE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckSweden"
+  },
+  {
+    "country": "AE",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckUAE"
+  },
+  {
+    "country": "US",
+    "fields": [
+      "RegistrationNumber",
+      "State"
+    ],
+    "endpoint": "/CheckUSA"
+  },
+  {
+    "country": "UA",
+    "fields": [
+      "RegistrationNumber"
+    ],
+    "endpoint": "/CheckUkraine"
+  }
+]

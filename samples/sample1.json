@@ -1,0 +1,24 @@
+{
+  "Description": "MCLAREN SENNA",
+  "RegistrationYear": "2019",
+  "CarMake": {
+    "CurrentTextValue": "MCLAREN"
+  },
+  "CarModel": {
+    "CurrentTextValue": "SENNA"
+  },
+  "MakeDescription": {
+    "CurrentTextValue": "MCLAREN"
+  },
+  "ModelDescription": {
+    "CurrentTextValue": "SENNA"
+  },
+  "ImageUrl": "http://vehicleregistrationapi.ca/image.aspx/@TUNMQVJFTiBTRU5OQQ==",
+  "Body": "Passenger Car",
+  "Transmission": "Dual-Clutch Transmission (DCT)",
+  "Drive": "",
+  "Trim": "",
+  "VIN": "SBM15ACA4KW800002",
+  "Engine": "8 Cyl",
+  "Fuel": "Gasoline"
+}

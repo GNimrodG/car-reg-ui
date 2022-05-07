@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Vehicle xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://regcheck.org.uk">
+  <vehicleJson>{
+  "ABICode": "",
+  "Description": "Volvo FH",
+  "RegistrationYear": "2021",
+  "CarMake": {
+    "CurrentTextValue": "Volvo"
+  },
+  "CarModel": {
+    "CurrentTextValue": "FH"
+  },
+  "BodyStyle": {
+    "CurrentTextValue": "Tractor"
+  },
+  "EngineSize": {
+    "CurrentTextValue": "12777"
+  },
+  "NumberOfDoors": {
+    "CurrentTextValue": ""
+  },
+  "Transmission": {
+    "CurrentTextValue": "Manual"
+  },
+  "FuelType": {
+    "CurrentTextValue": "Diesel"
+  },
+  "MakeDescription": {
+    "CurrentTextValue": "Volvo"
+  },
+  "ModelDescription": {
+    "CurrentTextValue": "FH"
+  },
+  "Immobiliser": {
+    "CurrentTextValue": ""
+  },
+  "NumberOfSeats": {
+    "CurrentTextValue": "2"
+  },
+  "IndicativeValue": {
+    "CurrentTextValue": 0
+  },
+  "DriverSide": {
+    "CurrentTextValue": ""
+  },
+  "VehicleInsuranceGroup": 0,
+  "VehicleInsuranceGroupOutOf": 0,
+  "VehicleIdentificationNumber": "YV2RT40A7MB358338",
+  "EngineCode": "",
+  "EngineNumber": "",
+  "Colour": "White",
+  "ImageUrl": "https://www.regcheck.org.uk/image.aspx/@Vm9sdm8gRkg="
+}</vehicleJson>
+  <vehicleData>
+    <Description>Volvo FH</Description>
+    <RegistrationYear>2021</RegistrationYear>
+    <CarMake>
+      <CurrentTextValue>Volvo</CurrentTextValue>
+    </CarMake>
+    <BodyStyle>
+      <CurrentTextValue>Tractor</CurrentTextValue>
+    </BodyStyle>
+    <EngineSize>
+      <CurrentValue>12777</CurrentValue>
+    </EngineSize>
+    <NumberOfDoors>
+      <CurrentValue />
+    </NumberOfDoors>
+    <Transmission>
+      <CurrentTextValue>Manual</CurrentTextValue>
+    </Transmission>
+    <FuelType>
+      <CurrentTextValue>Diesel</CurrentTextValue>
+    </FuelType>
+    <MakeDescription>Volvo</MakeDescription>
+    <ModelDescription>FH</ModelDescription>
+  </vehicleData>
+</Vehicle>

@@ -1,0 +1,18 @@
+{
+  "name": "car-reg-ui",
+  "version": "1.1.0",
+  "description": "A UI for the CarReg api",
+  "main": "./dist/main/main.js",
+  "author": {
+    "name": "Nimrod Glockl",
+    "email": "g.nimrod.g@data-unknown.eu",
+    "url": "https://github.com/GNimrodG"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts",
+    "postinstall": "npm run electron-rebuild && npm run link-modules"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}
