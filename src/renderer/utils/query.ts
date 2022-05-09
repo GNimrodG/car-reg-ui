@@ -36,7 +36,12 @@ export function getRelevantData(data: any) {
   const Year: number | null = data?.RegistrationYear || null;
   const Make: string | null = data?.CarMake?.CurrentTextValue || data?.MakeDescription?.CurrentTextValue || null;
   const Model: string | null = data?.CarModel?.CurrentTextValue || data?.ModelDescription?.CurrentTextValue || null;
-  const VIN: string | null = data?.VIN || data?.VechileIdentificationNumber || data?.VehicleIdentificationNumber || null;
+  const VIN: string | null =
+    data?.VIN ||
+    data?.VechileIdentificationNumber ||
+    data?.VehicleIdentificationNumber ||
+    data?.ExtendedData?.numSerieMoteur || // France
+    null;
   const Color: string | null = data?.Color || data?.Colour || null;
   const Fuel: string | null = data?.FuelType?.CurrentTextValue || null;
 
