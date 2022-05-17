@@ -1,5 +1,10 @@
 import { XMLParser } from "fast-xml-parser";
 
+export const dateFormatter = new Intl.DateTimeFormat(undefined, {
+  dateStyle: "medium",
+  timeStyle: "medium",
+});
+
 export function serializeQuery(obj: any) {
   if (!obj) return "";
   if (typeof obj === "string") return encodeURIComponent(obj);

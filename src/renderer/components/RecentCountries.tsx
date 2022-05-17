@@ -16,7 +16,6 @@ export interface RecentCountriesProps {
 }
 
 const RecentCountries: FunctionComponent<RecentCountriesProps> = ({ onClick }) => {
-  console.count("RecentCountries");
   const recentStore = useRecentStore();
 
   return <>

@@ -1,6 +1,6 @@
 import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { FunctionComponent, useCallback, useMemo } from "react";
-import { getRelevantData } from "renderer/utils/query";
+import { dateFormatter, getRelevantData } from "renderer/utils/query";
 import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -23,10 +23,10 @@ const PlateContainer = styled("div")(({ theme }) => ({
   display: "inline-flex",
   flexDirection: "row",
   gap: theme.spacing(.5),
+  alignItems: "center",
 }));
 
 const RecentChecks: FunctionComponent<RecentChecksProps> = ({ onClick }) => {
-  console.count("RecentChecks");
   const recentStore = useRecentStore();
   const makeLogos = useMakeLogos();
 
@@ -34,13 +34,14 @@ const RecentChecks: FunctionComponent<RecentChecksProps> = ({ onClick }) => {
     const data = recentStore.responses[index].json;
     const plate = recentStore.responses[index].fields["RegistrationNumber"];
     const country = recentStore.responses[index].country;
+    const date = recentStore.responses[index].date;
 
     const { Year, Make, Model, VIN } = useMemo(() => getRelevantData(data), [data]);
 
     return <ListItem style={style} key={index} component="div" disablePadding>
       <ListItemButton onClick={onClick.bind(this, recentStore.responses[index])}>
         <ListItemIcon>
-          {makeLogos[Make?.toLowerCase() || ""] ? <Avatar src={makeLogos[Make!.toLowerCase()]} sx={{ "& .MuiAvatar-img": { objectFit: "contain" } }} /> : <Avatar><CancelIcon /></Avatar>}
+          {makeLogos[Make?.toLowerCase() || ""] ? <Avatar variant="square" src={makeLogos[Make!.toLowerCase()]} sx={{ "& .MuiAvatar-img": { objectFit: "contain" } }} /> : <Avatar><CancelIcon /></Avatar>}
         </ListItemIcon>
         <ListItemText
           sx={{ width: "80%", flexGrow: 0 }}
@@ -49,6 +50,7 @@ const RecentChecks: FunctionComponent<RecentChecksProps> = ({ onClick }) => {
             <Typography variant="caption">{Year || "Unknown year"}</Typography>
           </TitleContainer>}
           secondary={`${VIN || "Unknown VIN"}`} />
+        <Typography variant="button" sx={{ flexGrow: 1, width: "30%" }}>{date ? dateFormatter.format(date) : "Unknown Time"}</Typography>
         <Typography variant="button" sx={{ flexGrow: 1 }}><PlateContainer><FlagIcon country={country} showName />{plate}</PlateContainer></Typography>
       </ListItemButton>
     </ListItem>;

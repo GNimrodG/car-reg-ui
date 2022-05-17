@@ -1,6 +1,6 @@
 {
   "name": "car-reg-ui",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A UI for the CarReg api",
   "main": "./dist/main/main.js",
   "author": {

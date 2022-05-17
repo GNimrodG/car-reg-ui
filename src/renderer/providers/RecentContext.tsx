@@ -8,6 +8,7 @@ export interface ResponseData {
   country: string;
   label: string | null;
   fields: { [key: string]: string };
+  date?: number;
 }
 
 export interface IRecentContext {
@@ -29,7 +30,7 @@ export default function useRecentStore() {
 }
 
 const MAX_RECENT_TYPES = 5;
-const MAX_RECENT_RESPONES = 100;
+const MAX_RECENT_RESPONES = 1000;
 
 export function RecentContextProvider({ children }: { children: ReactNode }) {
   const [recentStore, setValue] = useLocalStorage<{ types: CountryData[], responses: ResponseData[] }>
@@ -45,7 +46,8 @@ export function RecentContextProvider({ children }: { children: ReactNode }) {
       responses: [
         {
           data: response.replace(/\r\n/g, "").replace(/\s{2,}/g, ""),
-          json, country: type.country, label: type.label || null, fields
+          json, country: type.country, label: type.label || null, fields,
+          date: Date.now(),
         },
         ...recentStore.responses
       ].slice(0, MAX_RECENT_RESPONES),
@@ -54,18 +56,14 @@ export function RecentContextProvider({ children }: { children: ReactNode }) {
   }, [setValue]);
 
   const addType = useCallback((type: CountryData) => {
-    console.log("adding type", type);
     if (recentStore.types.includes(type)) {
       let types = recentStore.types;
       types.splice(types.indexOf(type), 1);
       setValue(recentStore => ({ ...recentStore, types: [type, ...types].slice(0, MAX_RECENT_TYPES) }));
-      console.log("added existing type", type);
       return;
     }
     setValue(recentStore => ({ ...recentStore, types: [type, ...recentStore.types].slice(0, MAX_RECENT_TYPES) }));
-    console.log("added new type", type);
   }, [recentStore, setValue]);
-
 
   const value = useMemo(() => ({ ...recentStore, addResponse, addType }), [recentStore, addResponse, addType]);
 

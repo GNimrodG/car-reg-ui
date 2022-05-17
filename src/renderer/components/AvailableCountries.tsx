@@ -14,10 +14,8 @@ export interface AvailableCountriesProps {
   onClick: (country: CountryData) => void;
 }
 
-const AvailableCountries: FunctionComponent<AvailableCountriesProps> = ({ onClick }) => {
-  console.count("AvailableCountries");
-
-  return <>
+const AvailableCountries: FunctionComponent<AvailableCountriesProps> = ({ onClick }) =>
+  <>
     <Typography sx={{ textAlign: "center" }} variant="h5">Supported countries</Typography>
     <List>
       {countries
@@ -37,6 +35,5 @@ const AvailableCountries: FunctionComponent<AvailableCountriesProps> = ({ onClic
           </ListItem>)}
     </List>
   </>;
-};
 
 export default memo(AvailableCountries, (prev, next) => prev.onClick === next.onClick);

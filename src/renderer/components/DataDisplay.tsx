@@ -1,23 +1,35 @@
 import { FunctionComponent, useMemo } from "react";
-import { getRelevantData } from "renderer/utils/query";
+import { dateFormatter, getRelevantData } from "renderer/utils/query";
 import Avatar from "@mui/material/Avatar";
 import FlagIcon from "./FlagIcon";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import useMakeLogos from "renderer/providers/MakeLogos";
+import { styled } from "@mui/material/styles";
 
 export interface DataDisplayProps {
   data: any;
   country?: string;
   plate?: string;
+  date?: number;
 }
 
-const DataDisplay: FunctionComponent<DataDisplayProps> = ({ data, country, plate }) => {
+const TimeDisplay = styled("div")(({ theme }) => ({
+  position: "absolute",
+  right: theme.spacing(1),
+  top: theme.spacing(1),
+  fontSize: theme.typography.pxToRem(12),
+  fontWeight: theme.typography.fontWeightMedium,
+  color: theme.palette.text.secondary,
+}));
+
+const DataDisplay: FunctionComponent<DataDisplayProps> = ({ data, country, plate, date }) => {
   const makeLogos = useMakeLogos();
 
   const { Year, Make, Model, VIN, Color, Fuel } = useMemo(() => getRelevantData(data), [data]);
 
-  return <Paper sx={{ padding: theme => theme.spacing(2) }}>
+  return <Paper sx={{ padding: theme => theme.spacing(2), position: "relative", }}>
+    <TimeDisplay>{date ? dateFormatter.format(date) : "Unknown Time"}</TimeDisplay>
     {plate && <Typography variant="h5" align="center">{country && <FlagIcon country={country} showName />} {plate}</Typography>}
 
     <Typography variant="caption">Make</Typography>

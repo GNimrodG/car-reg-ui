@@ -1,5 +1,5 @@
-import { Countries, Fields } from "../translations.json";
-import { CountryData } from "../countries.json";
+import { Countries, Fields } from "./translations.json";
+import { CountryData } from "./countries.json";
 import { FunctionComponent, useCallback, useState } from "react";
 import { handleResponse, serializeQuery } from "renderer/utils/query";
 import Accordion from "@mui/material/Accordion";
@@ -32,7 +32,7 @@ const Home: FunctionComponent = () => {
 
   const [loading, setLoading] = useState(false);
   const [resultDialog, setResultDialog] = useState(false);
-  const [data, setData] = useState<null | { raw: string, json: any | null, plate: string, country: string, label?: string }>(null);
+  const [data, setData] = useState<null | { raw: string, json: any | null, plate: string, country: string, label?: string, date?: number }>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleDialogClose = useCallback(() => {
@@ -41,11 +41,24 @@ const Home: FunctionComponent = () => {
     setRequestData({});
   }, []);
 
-  const handleDialogSuccess = useCallback(async () => {
+  const handleDialogSuccess = useCallback(async (_: any, force = false) => {
     handleDialogClose();
     if (!selectedCountry) return;
-    setLoading(true);
+
+    const cached = recentStore.responses.find(x =>
+      x.country === selectedCountry.country &&
+      x.label === (selectedCountry.label || null) &&
+      Object.entries(x.fields).every(([key, value]) => requestData[key].toString().toLowerCase() === value.toString().toLowerCase()));
+
     const plate = requestData.RegistrationNumber?.toUpperCase();
+
+    if (cached && !force) {
+      setData({ raw: cached.data, json: cached.json, plate, country: selectedCountry.country, label: selectedCountry.label, date: cached.date });
+      setResultDialog(true);
+      return;
+    }
+
+    setLoading(true);
     const endpoint = selectedCountry.endpoint;
 
     recentStore.addType(selectedCountry);
@@ -58,7 +71,7 @@ const Home: FunctionComponent = () => {
     if (result.ok) {
       const text = await result.text();
       const json = handleResponse(text);
-      setData({ raw: text, json, plate, country: selectedCountry.country, label: selectedCountry.label });
+      setData({ raw: text, json, plate, country: selectedCountry.country, label: selectedCountry.label, date: Date.now() });
       recentStore.addResponse(text, json, requestData, selectedCountry);
     } else {
       setError(await result.text());
@@ -84,7 +97,7 @@ const Home: FunctionComponent = () => {
   }, []);
 
   const handleCheckSelect = useCallback((x: ResponseData) => {
-    setData({ raw: x.data, json: x.json, plate: x.fields["RegistrationNumber"], country: x.country, label: x.label || undefined });
+    setData({ raw: x.data, json: x.json, plate: x.fields["RegistrationNumber"], country: x.country, label: x.label || undefined, date: x.date });
     setResultDialog(true);
   }, []);
 
@@ -101,7 +114,7 @@ const Home: FunctionComponent = () => {
           {Countries[selectedCountry.country.toUpperCase()]}{selectedCountry.label ? ` ${selectedCountry.label}` : ""}
         </DialogTitle>
         <DialogContent>
-          <form onSubmit={e => { e.preventDefault(); handleDialogSuccess(); }}>
+          <form onSubmit={e => { e.preventDefault(); handleDialogSuccess(e); }}>
             {selectedCountry.fields.map((field, i) =>
               <TextField
                 key={`${selectedCountry.country}-${i}`}
@@ -115,6 +128,7 @@ const Home: FunctionComponent = () => {
           </form>
         </DialogContent>
         <DialogActions>
+          <Button color="warning" onClick={handleDialogSuccess.bind(this, true)}>Force refetch</Button>
           <Button color="error" onClick={handleDialogClose}>Cancel</Button>
           <Button color="primary" onClick={handleDialogSuccess}>Send</Button>
         </DialogActions>
@@ -135,7 +149,7 @@ const Home: FunctionComponent = () => {
           flexDirection: "column",
           width: "100%",
         })}>
-          <DataDisplay data={data.json} country={data.country} plate={data.plate} />
+          <DataDisplay data={data.json} country={data.country} plate={data.plate} date={data.date} />
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography>Raw JSON data</Typography>
