@@ -2,11 +2,11 @@
 import Tooltip from "@mui/material/Tooltip";
 
 // External
-import { FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import clsx from "clsx";
 
 // Internal;
-import { Countries } from "../translations.json";
+import { Countries } from "renderer/static/translations.json";
 
 export interface FlagIconProps {
   country: string;

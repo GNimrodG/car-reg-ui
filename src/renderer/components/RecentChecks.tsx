@@ -1,5 +1,5 @@
-import { FixedSizeList, ListChildComponentProps } from "react-window";
-import { FunctionComponent, useCallback, useMemo } from "react";
+import { FixedSizeList, type ListChildComponentProps } from "react-window";
+import { type FunctionComponent, useCallback, useMemo } from "react";
 import { dateFormatter, getRelevantData } from "renderer/utils/query";
 import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
@@ -13,7 +13,8 @@ import Paper from "@mui/material/Paper";
 import TitleContainer from "./TitleContainer";
 import Typography from "@mui/material/Typography";
 import useMakeLogos from "renderer/providers/MakeLogos";
-import useRecentStore, { ResponseData } from "renderer/providers/RecentContext";
+import { selectRecent, type ResponseData } from "renderer/stores/recent";
+import { useAppSelector } from "renderer/redux/hooks";
 
 export interface RecentChecksProps {
   onClick: (country: ResponseData) => void;
@@ -27,7 +28,7 @@ const PlateContainer = styled("div")(({ theme }) => ({
 }));
 
 const RecentChecks: FunctionComponent<RecentChecksProps> = ({ onClick }) => {
-  const recentStore = useRecentStore();
+  const recentStore = useAppSelector(selectRecent);
   const makeLogos = useMakeLogos();
 
   const renderRow = useCallback(({ index, style }: ListChildComponentProps) => {

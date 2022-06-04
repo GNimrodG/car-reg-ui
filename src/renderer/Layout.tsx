@@ -1,4 +1,4 @@
-import { FunctionComponent, Suspense } from "react";
+import { type FunctionComponent, Suspense } from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-import Loading from "./Loading";
+import Loading from "./components/Loading";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import UsageDisplay from "./components/UsageDisplay";
-import useUserStore from "./providers/UsersContext";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { removeUser, selectUser, setSelectedUser } from "./stores/user";
 
 const filter = createFilterOptions<UserListEntry>();
 
@@ -29,7 +30,8 @@ const Main = styled("main")(({ theme }) => ({
 }));
 
 const Layout: FunctionComponent = ({ children }) => {
-  const userStore = useUserStore();
+  const userStore = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   return <>
     <AppBar position="sticky">
@@ -41,11 +43,11 @@ const Layout: FunctionComponent = ({ children }) => {
             value={userStore.selectedUser || null}
             onChange={(_, newValue) => {
               if (typeof newValue === 'string') {
-                userStore.setSelectedUser(newValue);
+                dispatch(setSelectedUser(newValue));
               } else if (newValue && newValue.inputValue) {
-                userStore.setSelectedUser(newValue.inputValue);
+                dispatch(setSelectedUser(newValue.inputValue));
               } else {
-                userStore.setSelectedUser(null);
+                dispatch(setSelectedUser(null));
               }
             }}
             filterOptions={(options, params) => {
@@ -75,7 +77,7 @@ const Layout: FunctionComponent = ({ children }) => {
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      userStore.removeUser(option.toString());
+                      dispatch(removeUser(option.toString()));
                     }}>
                     <DeleteIcon />
                   </IconButton>}

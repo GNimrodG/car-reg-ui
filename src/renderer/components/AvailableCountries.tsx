@@ -1,6 +1,6 @@
-import { Countries } from "renderer/translations.json";
-import { FunctionComponent, memo } from "react";
-import countries, { CountryData } from "renderer/countries.json";
+import { Countries } from "renderer/static/translations.json";
+import { type FunctionComponent, memo } from "react";
+import countries, { CountryData } from "renderer/static/countries.json";
 import FlagIcon from "./FlagIcon";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";

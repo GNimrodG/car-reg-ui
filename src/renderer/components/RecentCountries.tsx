@@ -1,6 +1,4 @@
-import { Countries } from "renderer/translations.json";
-import { CountryData } from "renderer/countries.json";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import FlagIcon from "./FlagIcon";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,14 +7,17 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import TitleContainer from "./TitleContainer";
 import Typography from "@mui/material/Typography";
-import useRecentStore from "renderer/providers/RecentContext";
+import { Countries } from "renderer/static/translations.json";
+import { CountryData } from "renderer/static/countries.json";
+import { useAppSelector } from "renderer/redux/hooks";
+import { selectRecent } from "renderer/stores/recent";
 
 export interface RecentCountriesProps {
   onClick: (country: CountryData) => void;
 }
 
 const RecentCountries: FunctionComponent<RecentCountriesProps> = ({ onClick }) => {
-  const recentStore = useRecentStore();
+  const recentStore = useAppSelector(selectRecent);
 
   return <>
     {recentStore.types.length > 0 && <>

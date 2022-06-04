@@ -1,6 +1,6 @@
 import { blue } from "@mui/material/colors";
 import { createTheme, StyledEngineProvider, ThemeProvider as MuiThemeProvider, } from "@mui/material/styles";
-import { FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useEffect, useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import useMediaQuery from "@mui/material/useMediaQuery";
 

@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo } from "react";
+import { type FunctionComponent, useMemo } from "react";
 import { dateFormatter, getRelevantData } from "renderer/utils/query";
 import Avatar from "@mui/material/Avatar";
 import FlagIcon from "./FlagIcon";

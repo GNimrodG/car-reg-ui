@@ -1,6 +1,6 @@
-import { Countries, Fields } from "./translations.json";
-import { CountryData } from "./countries.json";
-import { FunctionComponent, useCallback, useState } from "react";
+import { Countries, Fields } from "renderer/static/translations.json";
+import { CountryData } from "renderer/static/countries.json";
+import { type FunctionComponent, useCallback, useState } from "react";
 import { handleResponse, serializeQuery } from "renderer/utils/query";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -15,18 +15,20 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Loading from "renderer/Loading";
+import Loading from "renderer/components/Loading";
 import RecentChecks from "renderer/components/RecentChecks";
 import RecentCountries from "renderer/components/RecentCountries";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import useRecentStore, { ResponseData } from "renderer/providers/RecentContext";
-import useUserStore from "renderer/providers/UsersContext";
 import IconButton from "@mui/material/IconButton";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { selectUser } from "./stores/user";
+import { addType, addResponse, selectRecent, type ResponseData } from "./stores/recent";
 
 const Home: FunctionComponent = () => {
-  const userStore = useUserStore();
-  const recentStore = useRecentStore();
+  const userStore = useAppSelector(selectUser);
+  const recentStore = useAppSelector(selectRecent);
+  const dispatch = useAppDispatch();
 
   const [dialog, setDialog] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<null | CountryData>(null);
@@ -63,7 +65,7 @@ const Home: FunctionComponent = () => {
     setLoading(true);
     const endpoint = selectedCountry.endpoint;
 
-    recentStore.addType(selectedCountry);
+    dispatch(addType(selectedCountry))
     const result = await fetch(`https://www.regcheck.org.uk/api/reg.asmx${endpoint}`, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       method: "POST",
@@ -74,7 +76,7 @@ const Home: FunctionComponent = () => {
       const text = await result.text();
       const json = handleResponse(text);
       setData({ raw: text, json, plate, country: selectedCountry.country, label: selectedCountry.label, date: Date.now() });
-      recentStore.addResponse(text, json, requestData, selectedCountry);
+      dispatch(addResponse(text, json, requestData, selectedCountry));
     } else {
       setError(await result.text());
     }
@@ -135,7 +137,7 @@ const Home: FunctionComponent = () => {
                 required
                 fullWidth
                 margin="normal"
-                placeholder={selectedCountry.placeholders[field] || undefined}
+                placeholder={selectedCountry.placeholders?.[field] || undefined}
                 autoFocus={i === 0}
                 label={Fields[field]}
                 value={requestData[field] || ""}

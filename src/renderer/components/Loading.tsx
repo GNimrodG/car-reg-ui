@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 
 // External
-import { FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 
 export interface LoadingProps {
   global?: boolean;
