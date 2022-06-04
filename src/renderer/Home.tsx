@@ -7,6 +7,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AvailableCountries from "renderer/components/AvailableCountries";
 import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
 import DataDisplay from "renderer/components/DataDisplay";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -21,6 +22,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import useRecentStore, { ResponseData } from "renderer/providers/RecentContext";
 import useUserStore from "renderer/providers/UsersContext";
+import IconButton from "@mui/material/IconButton";
 
 const Home: FunctionComponent = () => {
   const userStore = useUserStore();
@@ -109,6 +111,18 @@ const Home: FunctionComponent = () => {
       onClose={handleDialogClose}
       maxWidth="sm"
       fullWidth>
+      <IconButton
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          zIndex: 2,
+        }}
+        onClick={handleDialogClose}
+        size="large">
+        <CloseIcon />
+      </IconButton>
       {!!selectedCountry && <>
         <DialogTitle>
           {Countries[selectedCountry.country.toUpperCase()]}{selectedCountry.label ? ` ${selectedCountry.label}` : ""}
@@ -121,6 +135,7 @@ const Home: FunctionComponent = () => {
                 required
                 fullWidth
                 margin="normal"
+                placeholder={selectedCountry.placeholders[field] || undefined}
                 autoFocus={i === 0}
                 label={Fields[field]}
                 value={requestData[field] || ""}
@@ -140,6 +155,18 @@ const Home: FunctionComponent = () => {
       onClose={dismissResult}
       maxWidth="lg"
       fullWidth>
+      <IconButton
+        aria-label="close"
+        sx={{
+          position: "absolute",
+          right: 8,
+          top: 8,
+          zIndex: 2,
+        }}
+        onClick={dismissResult}
+        size="large">
+        <CloseIcon />
+      </IconButton>
       {!!data && <>
         <DialogTitle>
           {Countries[data.country.toUpperCase()]}{data.label ? ` ${data.label}` : ""}

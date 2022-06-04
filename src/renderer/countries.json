@@ -19,6 +19,9 @@
       "RegistrationNumber",
       "State"
     ],
+    "placeholders": {
+      "State": "ACT|NSW|NT|QLD|SA|TAS|VIC|WA"
+    },
     "endpoint": "/CheckAustralia"
   },
   {
@@ -48,6 +51,9 @@
       "RegistrationNumber",
       "state"
     ],
+    "placeholders": {
+      "state": "AB|BC|MB|NB|NL|NT|NS|NU|ON|PE|QC|SK|YT"
+    },
     "endpoint": "/CheckCanada"
   },
   {
@@ -174,6 +180,9 @@
     "fields": [
       "RegistrationNumber"
     ],
+    "placeholders": {
+      "RegistrationNumber": "AA 000AA"
+    },
     "endpoint": "/CheckItaly"
   },
   {
