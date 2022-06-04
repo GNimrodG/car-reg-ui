@@ -73,7 +73,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "car-reg-ui",
+      "owner": "GNimrodG",
       "repo": "car-reg-ui"
     }
   },

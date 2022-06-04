@@ -19,14 +19,10 @@ const rootReducer = combineReducers({
   recent: recentSlice,
 });
 
-const electronStore = new ElectronStore()
-
 const persistConfig = {
   key: "root",
   version: 1,
-  storage: createElectronStorage({
-    electronStore
-  }),
+  storage: createElectronStorage(),
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
