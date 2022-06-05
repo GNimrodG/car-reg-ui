@@ -43,6 +43,7 @@ export function getRelevantData(data: any) {
   const Model: string | null = data?.CarModel?.CurrentTextValue || data?.ModelDescription?.CurrentTextValue || null;
   const VIN: string | null =
     data?.VIN ||
+    data?.Vin || // Brazil
     data?.VechileIdentificationNumber ||
     data?.VehicleIdentificationNumber ||
     data?.ExtendedData?.numSerieMoteur || // France
