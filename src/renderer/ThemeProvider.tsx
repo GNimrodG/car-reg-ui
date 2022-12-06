@@ -1,6 +1,6 @@
 import { blue } from "@mui/material/colors";
 import { createTheme, StyledEngineProvider, ThemeProvider as MuiThemeProvider, } from "@mui/material/styles";
-import { type FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useEffect, useState, PropsWithChildren } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -24,7 +24,7 @@ function useDarkTheme() {
   return prefersDarkTheme;
 }
 
-const ThemeProvider: FunctionComponent = ({ children }) => {
+const ThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const prefersDarkTheme = useDarkTheme();
   const inPrint = useMediaQuery("@media print");
   const [themeType, setThemeType] = useState<"dark" | "light">(

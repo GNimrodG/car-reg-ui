@@ -1,5 +1,4 @@
 import { type ThunkAction, type Action, combineReducers, configureStore } from "@reduxjs/toolkit";
-import ElectronStore from "electron-store";
 import {
   persistStore, persistReducer,
   FLUSH,
@@ -10,7 +9,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import createElectronStorage from "redux-persist-electron-storage";
-// import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import recentSlice from "renderer/stores/recent";
 import userSlice from "renderer/stores/user";
 
