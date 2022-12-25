@@ -32,7 +32,7 @@ const Home: FunctionComponent = () => {
 
   const [dialog, setDialog] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<null | CountryData>(null);
-  const [requestData, setRequestData] = useState<{ [key: string]: string }>({});
+  const [requestData, setRequestData] = useState<Record<string, string>>({});
 
   const [loading, setLoading] = useState(false);
   const [resultDialog, setResultDialog] = useState(false);
@@ -145,7 +145,7 @@ const Home: FunctionComponent = () => {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button color="warning" onClick={handleDialogSuccess.bind(this, true)}>Force refetch</Button>
+          <Button color="warning" onClick={e => handleDialogSuccess(e, true)}>Force refetch</Button>
           <Button color="error" onClick={handleDialogClose}>Cancel</Button>
           <Button color="primary" onClick={handleDialogSuccess}>Send</Button>
         </DialogActions>

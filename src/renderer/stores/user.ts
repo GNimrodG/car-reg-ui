@@ -18,7 +18,7 @@ const initialState: UserState = {
 export const updateCredit = createAsyncThunk(
   "user/updateCredit",
   async (_, { getState }) => {
-    const user = (getState() as any).user.selectedUser;
+    const user = (getState() as { user: UserState }).user.selectedUser;
     if (!user) return null;
     try {
       const result = await fetch(`https://www.regcheck.org.uk/ajax/getcredits.aspx?username=${user}`);
@@ -34,7 +34,6 @@ export const updateCredit = createAsyncThunk(
 export const setSelectedUser: (user: string | null) => ThunkAction<void, unknown, undefined, AnyAction> =
   (user) => ((dispatch) => {
     dispatch(userSlice.actions.selectUser(user));
-    if (!user) return;
     dispatch(updateCredit());
   });
 
@@ -47,6 +46,9 @@ export const userSlice = createSlice({
     },
     removeUser: (state, action: PayloadAction<string>) => {
       state.users = state.users.filter((user) => user !== action.payload);
+    },
+    setUsers: (state, action: PayloadAction<string[]>) => {
+      state.users = action.payload;
     },
     selectUser: (state, action: PayloadAction<string | null>) => {
       state.selectedUser = action.payload;
@@ -69,9 +71,13 @@ export const userSlice = createSlice({
           state.status = "failed";
         }
       })
+      .addCase(updateCredit.rejected, (state) => {
+        state.credits = 0;
+        state.status = "failed";
+      })
 });
 
-export const { addUser, removeUser } = userSlice.actions;
+export const { addUser, removeUser, setUsers } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
 

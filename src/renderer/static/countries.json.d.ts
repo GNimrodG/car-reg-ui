@@ -1,7 +1,7 @@
 export type CountryData<FieldKeys extends string = string> = {
   country: string,
   fields: FieldKeys[],
-  placeholders: Record<FieldKeys, string>,
+  placeholders?: Record<FieldKeys, string>,
   endpoint: string,
   label?: string
 };

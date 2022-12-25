@@ -8,7 +8,7 @@ export interface ResponseData {
   json: any;
   country: string;
   label: string | null;
-  fields: { [key: string]: string };
+  fields: Record<string, string>;
   date?: number;
 }
 
@@ -25,7 +25,8 @@ const initialState: RecentState = {
 const MAX_RECENT_TYPES = 5;
 const MAX_RECENT_RESPONES = 1000;
 
-export const addResponse: (response: string, json: any, fields: { [key: string]: string }, type: CountryData) => ThunkAction<void, unknown, unknown, AnyAction> =
+export const addResponse: (response: string, json: any, fields: Record<string, string>, type: CountryData) =>
+  ThunkAction<void, unknown, unknown, AnyAction> =
   (response, json, fields, type) => ((dispatch) => {
     dispatch(recentSlice.actions.addResponse({ response, json, fields, type }));
     dispatch(updateCredit())
@@ -44,7 +45,7 @@ export const recentSlice = createSlice({
     },
     addResponse: (state,
       { payload: { response, json, fields, type } }:
-        PayloadAction<{ response: string, json: any, fields: { [key: string]: string }, type: CountryData }>) => {
+        PayloadAction<{ response: string, json: any, fields: Record<string, string>, type: CountryData }>) => {
       state.responses = [
         {
           data: response.replace(/\r\n/g, "").replace(/\s{2,}/g, ""),
@@ -54,10 +55,14 @@ export const recentSlice = createSlice({
         ...state.responses,
       ].slice(0, MAX_RECENT_RESPONES);
     },
+    importRecentData: (state, action: PayloadAction<RecentState>) => {
+      state.types = action.payload.types;
+      state.responses = action.payload.responses;
+    },
   },
 });
 
-export const { addType } = recentSlice.actions;
+export const { addType, importRecentData } = recentSlice.actions;
 
 export const selectRecent = (state: RootState) => state.recent;
 
