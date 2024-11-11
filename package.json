@@ -82,7 +82,7 @@
   },
   "author": {
     "name": "Nimrod Glockl",
-    "email": "g.nimrod.g@data-unknown.eu",
+    "email": "g.nimrod.g@data-unknown.com",
     "url": "https://github.com/GNimrodG"
   },
   "contributors": [
@@ -103,7 +103,7 @@
     }
   ],
   "license": "MIT",
-  "homepage": "https://data-unknown.eu",
+  "homepage": "https://data-unknown.com",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",

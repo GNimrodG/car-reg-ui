@@ -7,7 +7,7 @@ export function MakeLogosProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         async function fetchLogos() {
-            const res = await fetch("https://api.lpdb.data-unknown.eu/assets/make-logos.json");
+            const res = await fetch("https://lpdb.data-unknown.com/assets/make-logos.json");
             const json = await res.json();
             setLogos(json);
         }

@@ -4,8 +4,8 @@
   "description": "A UI for the CarReg api",
   "main": "./dist/main/main.js",
   "author": {
-    "name": "Nimrod Glockl",
-    "email": "g.nimrod.g@data-unknown.eu",
+    "name": "Nimrod Gloeckl",
+    "email": "g.nimrod.g@data-unknown.com",
     "url": "https://github.com/GNimrodG"
   },
   "scripts": {
