@@ -14,11 +14,10 @@ export function serializeQuery(obj: any) {
       if (obj[p] instanceof Array)
         for (const v of obj[p])
           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(v));
-      else
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      else str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
     }
   }
-  return (str.length > 0 ? str.join("&") : '');
+  return str.length > 0 ? str.join("&") : "";
 }
 
 const parser = new XMLParser();
@@ -38,9 +37,15 @@ export function handleResponse(body: string): any | null {
 }
 
 export function getRelevantData(data: any) {
-  const Year: number | null = data?.RegistrationYear || null;
-  const Make: string | null = data?.CarMake?.CurrentTextValue || data?.MakeDescription?.CurrentTextValue || null;
-  const Model: string | null = data?.CarModel?.CurrentTextValue || data?.ModelDescription?.CurrentTextValue || null;
+  const Year: number | null = data?.RegistrationYear || data?.ModelYear || null;
+  const Make: string | null =
+    data?.CarMake?.CurrentTextValue ||
+    data?.MakeDescription?.CurrentTextValue ||
+    null;
+  const Model: string | null =
+    data?.CarModel?.CurrentTextValue ||
+    data?.ModelDescription?.CurrentTextValue ||
+    null;
   const VIN: string | null =
     data?.VIN ||
     data?.Vin || // Brazil
